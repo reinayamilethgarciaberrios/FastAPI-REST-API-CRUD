@@ -37,4 +37,13 @@ def get_post(post_id: str):
     for post in posts:
         if post["id"] == post_id:
             return post
-    raise HTTPException(status_code=404, detail="Post Not found")    
+    raise HTTPException(status_code=404, detail="Post Not found")
+
+@app.delete("/posts/{post_id}")
+def delete_post(post_id: str):
+    for index, post in enumerate(posts):
+        if post ["id"] == post_id:
+            posts.pop(index)  
+            return{"message": "Post has been deleted sucessfully"}
+    raise HTTPException(status_code=404, detail="Post Not found")  
+
